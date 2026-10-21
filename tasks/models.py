@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.core.validators import MinValueValidator
 
 class Workspace(models.Model):
     name = models.CharField(max_length=100)
@@ -39,7 +39,9 @@ class Column(models.Model):
         on_delete=models.CASCADE,
         related_name="columns"
     )
-    position = models.PositiveIntegerField()
+    position = models.PositiveIntegerField(
+        validators=[MinValueValidator(1)]
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

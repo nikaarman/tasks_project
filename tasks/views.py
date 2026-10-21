@@ -217,8 +217,8 @@ def column_list_create(request):
     if not _is_int(board_id):
         return _error("Valid board_id is required")
 
-    if not _is_int(position) or position < 0:
-        return _error("Position must be a non-negative integer")
+    if not _is_int(position) or position < 1:
+        return _error("Position must be a positive integer")
 
     board, error_response = _get_or_404(Board, board_id, "Board")
     if error_response:
